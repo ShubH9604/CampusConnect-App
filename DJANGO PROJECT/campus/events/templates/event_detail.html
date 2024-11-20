@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container mt-3 mb-3">
+    <h1 class="text-center mb-3" style="color: #0d6efd;">Event Details</h1>
+    <div class="row align-items-center">
+        <!-- Event Details Section -->
+        <div class="col-md-6">
+            <img src="{{ event.photo.url }}" class="img-fluid rounded" alt="Event photo">
+        </div>
+        <div class="col-md-6">
+            <div class="border p-4 rounded" style="background-color: #000000; color: #ffffff;">
+                <h2 class="text-center">{{ event.title }}</h2>
+                <hr>
+                <p><strong><span style="color: #0d6efd;">Description:</span></strong> {{ event.description }}</p>
+                <p><strong><span style="color: #0d6efd;">Date & Time:</span></strong> {{ event.event_datetime|date:"F d, Y H:i" }}</p>
+                <p><strong><span style="color: #0d6efd;">Location:</span></strong> {{ event.location }}</p>
+                <p><strong><span style="color: #0d6efd;">Organized By:</span></strong> {{ event.organized_by }}</p>
+                {% if user.is_authenticated %}
+                <div class="text-center mt-2">
+                    {% if registered %}
+                    <p class="alert alert-light">You have registered for this event.</p>
+                    {% else %}
+                    <a href="{% url 'event_register' event.id %}" class="btn btn-light w-100">Register</a>
+                    {% endif %}
+                </div>
+                {% else %}
+                <div class="alert alert-light text-center mt-4">
+                    Please <a href="{% url 'login' %}" style="color: #0d6efd;">login</a> to register for this event.
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

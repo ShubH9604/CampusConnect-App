@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container my-3">
+    <h2 class="text-center" style="color: #0d6efd;">My Participation</h2>
+    <hr>
+
+    {% if user.is_authenticated %}
+        {% if participation %}
+            <div class="row">
+                {% for participation in participation %}
+                    <div class="col-md-4 col-lg-4 mb-4">
+                        <div class="card border-0 shadow-lg hover-effect" style="border: 2px solid white;">
+                            {% if participation.event.photo %}
+                                <img src="{{ participation.event.photo.url }}" class="card-img-top" alt="Event photo">
+                            {% else %}
+                                <img src="default_image_url.jpg" class="card-img-top" alt="Default image">
+                            {% endif %}
+                            <div class="card-body" style="background-color: black; color: white; border-left: 1px solid white; border-right: 1px solid white; border-bottom: 1px solid white;">
+                                <h4 class="card-title text-center">{{ participation.event.title }}</h4><hr>
+                                <p><strong><span style="color: #0d6efd;">Date & Time:</span></strong> {{ participation.event.event_datetime|date:"d/m/Y, H:i" }}</p>
+                                <p><strong><span style="color: #0d6efd;">Location:</span></strong> {{ participation.event.location }}</p>
+                                <p><strong><span style="color: #0d6efd;">Organized By:</span></strong> {{ participation.event.organized_by }}</p>
+                                <div class="d-flex justify-content-center">
+                                    <a href="{% url 'event_detail' participation.event.id %}" class="btn btn-light btn-sm">View Event</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <h4 class="text-center">You have not registered for any events yet.</h4>
+        {% endif %}
+    {% else %}
+        <div class="text-center">
+            <p>You need to log in to view your participation.</p>
+            <a href="{% url 'login' %}?next={% url 'participation' %}" class="btn btn-primary">Login to Participate</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

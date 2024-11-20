@@ -1,0 +1,132 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container-fluid d-flex" style="height: 100vh; padding: 0; margin: 0; width: 100%; overflow: hidden;">
+    <div class="left-side" style="flex: 1; background-image: url('https://img.freepik.com/free-vector/revision-week-abstract-concept-vector-illustration-effective-revision-timetables-planning-reading-period-exam-week-learn-everything-student-library-writing-notes-abstract-metaphor_335657-5868.jpg?t=st=1731278921~exp=1731282521~hmac=b78756702d483e99316be8aa14998564043e013d768e7dd5906711eefa85101e&w=740'); background-size: cover; background-position: center; height: 100%;"></div>
+    <div class="right-side" style="flex: 1; display: flex; justify-content: center; align-items: center; background: #000; height: 100%; overflow: hidden;">
+        <div class="card shadow-lg border-light rounded-lg" style="width: 100%; max-width: 400px; padding: 20px; background-color: rgba(255, 255, 255, 0.15);">
+            <div class="card-body">
+                <h2 class="card-title text-center mb-3 text-light">Login</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group mb-3">
+                        <input type="text" name="username" placeholder="Username" class="form-control rounded-pill py-2 px-3">
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="password" name="password" placeholder="Password" class="form-control rounded-pill py-2 px-3">
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary w-50 mt-1 rounded-pill py-2">Login</button>
+                    </div>
+                </form>
+
+                <div class="text-center mt-2">
+                    <p class="text-light mb-1">Don't have an account?</p>
+                    <a href="{% url 'register' %}" class="btn btn-secondary w-60 mt-2 rounded-pill py-2" style="background-color: #333; font-size: 1rem;">Register here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .container-fluid {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .left-side {
+        height: 100%;
+        flex: 1;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .right-side {
+        height: 100%;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #202020, #333);
+    }
+
+    .card {
+        border: none;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        width: 100%;
+        max-width: 400px;
+        padding: 20px;
+    }
+
+    .card-title {
+        color: #ffffff;
+        font-size: 2rem;
+        font-weight: 700;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .form-control {
+        border-radius: 25px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border: 1px solid #ffffff;
+        color: #ffffff;
+        font-size: 1.1rem;
+        transition: background-color 0.3s ease;
+    }
+
+    .form-control:focus {
+        background-color: rgba(255, 255, 255, 0.3);
+        border-color: #000000;
+    }
+
+    .btn-primary {
+        background-color: #000000;
+        border-color: #000000;
+        border-radius: 25px;
+        padding: 8px;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #004b99;
+    }
+
+    .btn-secondary {
+        background-color: #333;
+        border-color: #333;
+        border-radius: 25px;
+        padding: 8px;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+        background-color: #444;
+    }
+
+    .text-light {
+        color: #dcdcdc;
+    }
+</style>

@@ -1,0 +1,157 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="home-container">
+        <div class="left-side">
+            <h1>Welcome to CampusConnect, {{ request.user.username }}!</h1>
+            <p>➡️"Your campus journey just got easier! Join us to stay updated on the latest events and make the most of your university life. From academic talks to social events, we bring everything you need right to your fingertips. Stay informed, stay inspired!"</p>
+        </div>
+
+        <div class="right-side">
+            <h1>Latest Updates</h1>
+            <h6>Stay tuned for more exciting news!</h6><br>
+            <h6>➤ Exciting workshops coming your way – don’t miss out!</h6><br>
+            <h6>➤ Collaborate with student innovators.</h6><br>
+            <h6>➤ Get ready for a fun-filled weekend with campus events.</h6><br>
+            <h6>➤ Be a part of our community and make lasting memories.</h6><br>
+            <h6>➤ Enhance your skills at our upcoming workshops.</h6>
+        </div>
+    </div>
+
+    <div class="events-section">
+        <h2><center><strong>Upcoming Events</strong></center></h2>
+        <div class="events-container">
+            {% for event in events %}
+                <div class="event">
+                    {% if event.photo %}
+                        <img src="{{ event.photo.url }}" class="card-img-top" alt="Event photo">
+                    {% else %}
+                        <img src="default_image_url.jpg" class="card-img-top" alt="Default image">
+                    {% endif %}
+                    <h3><center><span style="color: #ffffff">{{ event.title }}</span></center></h3><hr>
+                    <h6><strong><span style="color: #0d6efd;">Date & Time:<span></strong> {{ event.event_datetime|date:"d/m/Y, H:i" }}</h6>
+                    <h6><strong><span style="color: #0d6efd;">Location:<span></strong> {{ event.location }}</h6>
+                    <h6><strong><span style="color: #0d6efd;">Organized By:<span></strong> {{ event.organized_by }}</h6>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <style>
+        .home-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 40px;
+            background-color: #000;
+            color: #ffffff;
+            height: 60vh;
+            margin-top: 10px;
+        }
+
+        .left-side, .right-side {
+            width: 48%;
+            background-color: #202020;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            height: 130%;
+        }
+
+        .left-side h1 {
+            font-size: 3rem;
+            color: #0d6efd;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .left-side p, .right-side p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .right-side h1 {
+            font-size: 2rem;
+            color: #0d6efd;
+        }
+
+        .right-side ul {
+            color: #e0e0e0;
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .right-side ul li {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .events-section {
+            background-color: #000;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 70px;
+        }
+
+        .events-section h2 {
+            font-size: 2rem;
+            color: #0d6efd;
+            margin-bottom: 20px;
+        }
+
+        .events-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .event {
+            background-color: #202020;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 15px;
+            min-width: 250px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .event:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .event h3 {
+            font-size: 1.5rem;
+            color: #0d6efd;
+            margin-top: 4px;
+        }
+
+        .event p {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+        }
+
+        .event p strong {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .home-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .left-side, .right-side {
+                width: 80%;
+                margin-bottom: 30px;
+            }
+
+            .events-section {
+                width: 80%;
+            }
+        }
+    </style>
+
+{% endblock %}

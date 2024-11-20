@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+CampusConnect
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0 text-center">Delete Event Confirmation</h4>
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="mb-4">Do you really want to delete the "{{ event.title }}" event ?</h5>
+                    <form method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-danger btn-lg mx-2" type="submit">Delete</button>
+                        <a class="btn btn-success btn-lg mx-2" href="{% url 'events' %}">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

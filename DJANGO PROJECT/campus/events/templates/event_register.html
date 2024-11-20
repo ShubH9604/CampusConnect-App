@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1 class="text-center mt-3 mb-3" style="color: #0d6efd;">Register for {{ event.title }}</h1>
+<div class="container mt-1 d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="w-50 p-4 rounded shadow" style="background-color: #000000; border: 1px solid #ffffff;">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="id_name" class="form-label fw-bold">Name</label>
+                {{ form.name }}
+            </div>
+            <div class="mb-3">
+                <label for="id_email" class="form-label fw-bold">Email</label>
+                {{ form.email }}
+            </div>
+            <div class="mb-3">
+                <label for="id_phone" class="form-label fw-bold">Phone Number</label>
+                {{ form.phone }}
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Register Now</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
